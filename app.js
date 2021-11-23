@@ -1,17 +1,11 @@
-import express from  'express'
-//import  db from ".env";
-//import from  routes "../models/user/index"
-const app = express()
-import dotenv from 'dotenv';
-import cors from 'cors';
-import helmet from 'helmet';
+import express from "express";
+import Server from "./src/config/server";
+import env from "./src/config/env";
+import middlewares from "./src/config/middlewares";
+const http = express();
 
-const port = 3000
+const server = new Server(http);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+server.middlewares(middlewares);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+server.start(env.app_port);
