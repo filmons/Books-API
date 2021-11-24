@@ -21,7 +21,7 @@ class Server {
 
     start(port){
         this.#http.listen( port, () => {
-            console.log('the server is runing ' + port);
+            console.log('Server is listening on port'  + port);
         })
     }
 
