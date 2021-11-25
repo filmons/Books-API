@@ -1,16 +1,21 @@
 class Server {
     #http;
+    // #middlewares;
+    // #routre;
+    
     constructor (http){
         this.#http = http;
+        // this.#middlewares = middlewares;
+        // this.#routre = routre;
     }
     middlewares(middlewares){
 
         for(const key in middlewares)
         this.#http.use(middlewares[key]);
     }
-    routres(routres){
-        for (const path in routres){
-            this.#http.use(path, routres[path]);
+    routre(routre){
+        for (const path in routre){
+            this.#http.use(path, routre[path]);
         }
         
     }

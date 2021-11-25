@@ -9,6 +9,7 @@ const env = {
 	user:process.env.DB_USERNAME,
 	host: process.env.DB_HOST,
 	dialect: "mysql",
+	jwt_secret:process.env.JWT_SECRET,
 };
 
 export default env;

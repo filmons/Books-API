@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
 import config from './env';
+//import models from '../../src/modules/User/user.js'
 
 const sequelize = new Sequelize(
     config.database,

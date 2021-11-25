@@ -7,6 +7,14 @@ class User extends Model {
             {
                 email: DataTypes.STRING,
                 password: DataTypes.STRING,
+                admin:DataTypes.STRING,
+                firstName:DataTypes.STRING,
+                lastName:DataTypes.STRING,
+                userId:{
+                    type:DataTypes.INTEGER,
+                    primaryKey:true,
+                    autoIncrement:true
+                }
             },
             { sequelize, modelName: 'User' }
         );
@@ -14,7 +22,7 @@ class User extends Model {
 
     static associate(models) {
         // define association here
-        this.hasMany(models.Book, { as: 'books' });
+        //this.hasMany(models.Book, { as: 'books' });
 				// or this.hasOne(...) depends your relations
         return this;
     }
