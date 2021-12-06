@@ -12,10 +12,11 @@ class UserController {
 
   getAll =  async (req, res, next ) => {
     try {
+      // const user = req.userID;
         const users = await Users.findAll();
         res.status(200).json(users);
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 }
 
@@ -33,30 +34,22 @@ register = async (req, res, next) => {
     //this.#models. j'ai enlaivé ce code car ca casse 
       res.status(201).json(user);
 
-  } catch (err) {
+  } catch (error) {
 
-      next(err);
+      next(error);
   }
 }
-// register =  async (req, res, next) => {
-//   try {
-//       const user = await Users.create({ ...req.body });
-//       res.status(201).json(user);
-//   } catch (err) {
-//       next(err);
-//   }
-// }
-
   login = async (req, res, next) => {
     try {
       const {email, password} = {...req.body};
-
+      
       if (!email || !password) 
       throw new ApiError("user not found !!", 403);
 
       const user = await Users.findOne({where: {email}});
       if (!user)
       throw new ApiError(403, 'user not fuond SO YOU CAN NOT LOG IN');
+      console.log(user);
 
       const result = await bcrypt.compare(password, user.password);
        if (!result)
@@ -64,9 +57,9 @@ register = async (req, res, next) => {
 
       const token = await Jwt.sign({id: user.id},env.jwt_secret);
 
-      res.headers('Autorisation',`Bearer ${token}`);
+      res.header('Autorisation',`Bearer ${token}`);
 
-      res.status(200).json('auth succes')
+      res.status(200).json('auth succes is ok ')
 
     } catch (error) {
       next(error);

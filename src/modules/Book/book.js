@@ -1,5 +1,3 @@
-
-  
 import { Model, DataTypes } from 'sequelize';
 import db from '../../config/database';
 
@@ -8,7 +6,13 @@ class Book extends Model {
         return super.init(
             {
                 title: DataTypes.STRING,
-                content: DataTypes.TEXT,
+                code: DataTypes.INTEGER,
+                quantity:DataTypes.INTEGER,
+                userId:{
+                    type:DataTypes.INTEGER,
+                    primaryKey:true,
+                    autoIncrement:true
+                }
             },
             { sequelize, modelName: 'Book' }
         );
@@ -16,7 +20,7 @@ class Book extends Model {
 
     static associate(models) {
         // define association here
-        this.belongsTo(models.User);
+        //this.belongsTo(models.User);
         return this;
     }
 }

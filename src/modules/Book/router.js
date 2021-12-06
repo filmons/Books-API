@@ -1,14 +1,17 @@
-
-  
 import { Router } from 'express';
-import bookController from './controller';
+//import bookController from './controllerBooks.js';
 
-const entrypoint = '/books';
-const bookRouter = Router();
+export default (controller) => {
+    const router = Router();
+  
+    router.route("/getAllBook").get(controller.getAll);
+    //router.route("/registerBook").post(controller.register);
+    //router.route("/login").post(controller.login);
+  
+    
+    
+    
+    return router;
+  };
+  
 
-bookRouter
-    .route(entrypoint)
-    .get(bookController.getAll)
-    .post(bookController.add);
-
-export default bookRouter;
