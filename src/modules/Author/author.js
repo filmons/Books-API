@@ -5,9 +5,8 @@ class Author extends Model {
     static init(sequelize) {
         return super.init(
             {
-                title: DataTypes.STRING,
-                code: DataTypes.INTEGER,
-                quantity:DataTypes.INTEGER,
+                firstName:DataTypes.STRING,
+                lastName:DataTypes.STRING,
                 userId:{
                     type:DataTypes.INTEGER,
                     primaryKey:true,
