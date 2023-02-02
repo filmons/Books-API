@@ -1,5 +1,6 @@
 import ApiError from "../../helpers/ApiError.js";
 import Users from './user';
+import Image from '../IMAGE/image';
 import bcrypt from 'bcrypt';
 import Jwt  from "jsonwebtoken";
 import env from '../../config/env'
@@ -18,6 +19,26 @@ class UserController {
     } catch (error) {
         next(error);
     }
+}
+
+getone =  async (userID ) => {
+  try {
+    // const user = req.userID;
+      const users = await Users.findOne({
+        where: {
+          userID
+        
+        },
+        include: [{
+          model: Image,
+          as: 'images',
+        }]
+      });
+      return users
+  } catch (error) {
+    console.log(error)
+      // next(error);
+  }
 }
 
 register = async (req, res, next) => {
@@ -54,7 +75,7 @@ register = async (req, res, next) => {
       const result = await bcrypt.compare(password, user.password);
        if (!result)
        throw new ApiError(403, 'email/passward incorect');
-
+console.log(env.jwt_secret)
       const token = await Jwt.sign({id: user.id},env.jwt_secret);
 
       res.header('Autorisation',`Bearer ${token}`);

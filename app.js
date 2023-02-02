@@ -18,7 +18,7 @@ api.errorHandler(errorHandlers);
 (async () => {
     try {
         await db.associateAll(db.sequelize.models)
-        await db.sequelize.sync({alter: true})
+        await db.sequelize.sync({alter:true})
         await api.start(config.app_port);
     } catch (e) {
         console.error(e);

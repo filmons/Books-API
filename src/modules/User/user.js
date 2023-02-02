@@ -24,6 +24,7 @@ class User extends Model {
         // define association here
         //this.hasMany(models.Book, { as: 'books' });
 				// or this.hasOne(...) depends your relations
+                this.belongsTo(models.Image, { as: 'images' });
         return this;
     }
 }
